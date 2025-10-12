@@ -19,7 +19,7 @@ Amazon VPC lets you provision a logically isolated section of the AWS Cloud wher
 ## Task 1: Create an Amazon VPC
 In this task you create an Amazon VPC using the VPC wizard. The wizard automatically creates a VPC based upon parameters you specify. 
 Here is an overview of the VPC:
- ![VPC](/images/img1.png)
+ ![VPC](images/img1.png)
 Image description: the preceding diagram depicts a Amazon VPC consisting of a public subnet and a private subnet. An Internet Gateway is attached to the Amazon VPC, and a Network Address Translation gateway is launched in the public subnet.
 
 ### Steps
@@ -60,7 +60,7 @@ Why is this subnet considered to be a Public subnet? The answer lies in the subn
 
 7. Choose the Route table tab.
 Each subnet is associated with a Route Table, which specifies the routes for outbound traffic leaving the subnet. Think of it like an address book that lists where to direct traffic based upon its destination.
- ![IG](/images/img2.png)
+ ![IG](images/img2.png)
 Image description: the preceding diagram depicts that the route table associated with the public subnet contains two routes. The first route is the local route (destination: 10.0.0.0/16), which allows communication within the VPC for the specified CIDR range. Traffic destined for this local route never leaves the VPC. The second route is the default route (destination: 0.0.0.0/0), which directs all IPv4 traffic destined for the internet to the IG.
 
 Routing rules are evaluated from the most restrictive (with the bigger number after the slash) through to the least restricitive (which is 0.0.0.0/0 since it refers to the entire internet). Thus, traffic is first sent within the VPC if it fails within the range of the VPC, otherwise it is send to the internet. The rules can further be edited based upon your particular network configuration.
@@ -68,7 +68,7 @@ Routing rules are evaluated from the most restrictive (with the bigger number af
 NOTE: This subnet is associated with a Route Table that has a route to an IG which makes it a Public Subnet. This makes its reachable from the internet.
 
 8. Choose the network ACL tab.
- ![ACL](/images/img3.png)
+ ![ACL](images/img3.png)
 Image description: the preceding diagram depicts a Network Access Control List (ACL), which is an optional security layer for a Virtual Private Cloud (VPC) in AWS. It acts as a stateless fw, controlling traffic in and out of subnets. The Network ACL is initially configured with default setting that allow all inbound and outbound traffic.
 
 The following list details the rules in the diagram:
@@ -84,7 +84,7 @@ The following list details the rules in the diagram:
 NOTE: the subnet has been tagged with the key of Name starting with the value Lab-subnet-private. Tags helps you to manage and identify your AWS resources.
 
 12. Choose the Route Table tab.
- ![RT](/images/img4.png)
+ ![RT](images/img4.png)
 Image description: the preceding diagram depicts the RT confgiguration for the private subnet within the VPC.
 
 The route table conatins the following two routes:
@@ -94,7 +94,7 @@ The route table conatins the following two routes:
 NOTE: the RT for the private subnet does not include a route to the IG. This absence of a direct internet route is what defines this subnet as a private subnet. Instances in this private subnet cannot be directly accesed from the internet, providing an additional layer of security and isolation.
 
 13. In the left navigation pane, under Virtual Private Cloud, choose NAT gateways.
- ![NAT](/images/img5.png)
+ ![NAT](images/img5.png)
 Image description: the preceding diagram depicts the resource within the private subnet initiates an outbound connection to the internet. The traffic from the private subnet is routed to the NAT gateway, as specified in the private subnets RT. The NAT gateway then forwards the traffic to the Internet Gateway, acting as an intermediary for the communication.
 
 NOTE: a Network Address Translation (NAT) gateway allows resources in a private subnet to connect to the internet and other resources outside the VPC. This is an outbound only connection, which means that the connection must be initiated from within the priavte subnet. Resources on the internet cannot initiate an inbound connection. Therefore, it is a means of keeping resources private and improving security for VPC resources.
