@@ -88,6 +88,18 @@ This script:
 * Activates the web server.
 * Creates a simple web server.
 
+![ec2](images/ec2-1.png)
+![ec2](images/ec2-2.png)
+![ec2](images/ec2-3.png)
+![ec2](images/ec2-4.png)
+![ec2](images/ec2-5.png)
+![ec2](images/ec2-6.png)
+![ec2](images/ec2-7.png)
+![ec2](images/ec2-8.png)
+![ec2](images/ec2-9.png)
+![ec2](images/ec2-10.png)
+
+
 13. Choose Launch instance. Expected output: Success.
 
 14. Choose Instances from the collapsible menu on the left pane. You may need to expand the menu to see this option.
@@ -98,6 +110,9 @@ The instance might appear in pending state, which means it is being launched. It
     * Instance state: Running.
     * Status check: 3/3 passed.
 Periodically refresh the page if you don’t see a change in the Instance state or Status check values.
+
+![ec2](images/ec2-11.png)
+![ec2](images/ec2-12.png)
 
 16. Select the checkbox next to your newly-created Web server and choose the Details tab that displays detailed information about your instance.
 
@@ -114,6 +129,8 @@ NOTE: With instance status monitoring, you can quickly determine whether Amazon 
 
 Notice that the System reachability, Instance reachability and Attached EBS reachability checks have passed.
 
+![ec2](images/ec2-13.png)
+
 2. Choose the Monitoring tab.
 
 This tab displays CloudWatch metrics for your instance. Currently, there are not many metrics to display because the instance was recently launched.
@@ -122,11 +139,17 @@ You can choose a graph to see and expanded view.
 
 NOTE: Amazon EC2 sends metrics to Amazon Cloudwatch for your EC2 instances. Basic (5 min) monitoring is enabled by default. You can enable detailed (1 min) monitoring.
 
+![ec2](images/ec2-14.png)
+
 3. Select the Actions menú (in the upper right of the console), choose Monitor and troubleshoot and select Get system log.
 
 NOTE: If you do not see a system log, wait a few minutes and refresh the log screen until it appears. The Sisyem Log displays the console output of the instance, which is a valuable tool for problem diagnosis. It is especially useful for troubleshooting kernel problem and service configurations issues that could cause an instance to terminate or become unreachable before its SSH daemon can be started.
 
+![ec2](images/ec2-15.png)
+
 4. Scroll through the output and note that the httpd package was installed from the user data that you added when you created the instance.
+
+![ec2](images/ec2-16.png)
 
 5. Scroll down to the bottom of the browser window and choose Cancel.
 
@@ -137,6 +160,9 @@ This shows you what your Amazon EC2 instance console would look like if a screen
 NOTE: If you are unable to reach your instance via SSH or RDP, you can capture a screenshot of your instance and view it as an image. This provides visibility as to the status of the instance, and allows for quicker troubleshooting. 
 
 7. Scroll down to the bottom of the browser window and choose Cancel.
+
+![ec2](images/ec2-17.png)
+![ec2](images/ec2-18.png)
 
 ## Task 3: Upate your security group and access the web server
 When you launched the EC2 instance, you provided a script that installed a web server and created a simple web page. In this task, you access content from the web server.
@@ -154,6 +180,9 @@ To correct this, you know update the SG yo permit web traffic on port 80.
 6. Select the checkbox next to the SG ID with the security group name Web server SG.
 7. Choose the Inbound rules tab.
 
+![ec2](images/ec2-19.png)
+![ec2](images/ec2-20.png)
+
 The SG currently has no rules.
 
 8. Choose Edit inbound rules.
@@ -161,6 +190,8 @@ The SG currently has no rules.
    * HTTP
    * Anywhere-IPv4
 10. Choose Save Rules.
+
+![ec2](images/ec2-21.png)
 
 The new Inbound HTTP rule creates an entry for both IPv4 IP address (0.0.0.0/0) as well as IPV6 IP address (::/0).
 
@@ -282,3 +313,145 @@ Terminate Your Instance
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html 
 Termination Protection for an Instance
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination 
+
+# Assessment
+Question 1
+Answer status:
+Correct
+Question
+What type of monitoring is enabled by default for EC2 instances?
+Question Type
+Multiple Choice
+Answer Options
+Option
+Your Selection
+Correct Answer
+Rationale
+Advanced monitoring
+Not selected
+Incorrect
+This is not a standard term used for EC2 monitoring in AWS.
+Detailed monitoring
+Not selected
+Incorrect
+Detailed (one-minute) monitoring is available but needs to be explicitly enabled by the user.
+Basic monitoring
+Selected
+Correct
+Basic (five-minute) monitoring is enabled by default for EC2 instances, as mentioned in the course content.
+Custom monitoring
+Not selected
+Incorrect
+While custom metrics can be created, this is not a default monitoring type for EC2 instances.
+Question 2
+Answer status:
+Correct
+Question
+Which of the following is an example of resizing an EC2 instance type?
+Question Type
+Multiple Choice
+Answer Options
+Option
+Your Selection
+Correct Answer
+Rationale
+Changing the instance's AMI
+Not selected
+Incorrect
+Changing the AMI is not resizing. It's replacing the instance's operating system and software stack.
+Updating the instance's tags
+Not selected
+Incorrect
+Updating tags is a metadata change and does not affect the instance's size or performance.
+Changing from t3.micro to t3.small
+Selected
+Correct
+This is correct. Changing the instance type from t3.micro to t3.small is an example of resizing an EC2 instance to increase its capacity.
+Modifying the instance's security group
+Not selected
+Incorrect
+Modifying security groups affects network access rules, not the instance's size or capacity.
+Question 3
+Answer status:
+Correct
+Question
+What is the primary purpose of enabling termination protection for an Amazon EC2 instance?
+Question Type
+Multiple Choice
+Answer Options
+Option
+Your Selection
+Correct Answer
+Rationale
+To prevent accidental termination of the instance
+Selected
+Correct
+This is correct. Termination protection is designed to prevent users from accidentally terminating an EC2 instance, which helps maintain the availability of important resources.
+To automatically backup the instance data
+Not selected
+Incorrect
+This is incorrect. Termination protection does not provide backup functionality. AWS offers separate services like Amazon EBS snapshots for data backup.
+To improve the instance's performance
+Not selected
+Incorrect
+This is incorrect. Termination protection is a safety feature and does not affect the performance of an EC2 instance.
+To reduce the cost of running the instance
+Not selected
+Incorrect
+This is incorrect. Termination protection does not impact the cost of running an EC2 instance. It is a safety feature, not a cost-saving measure.
+Question 4
+Answer status:
+Correct
+Question
+What is the primary difference between stopping and terminating an EC2 instance?
+Question Type
+Multiple Choice
+Answer Options
+Option
+Your Selection
+Correct Answer
+Rationale
+Stopping is temporary, terminating is permanent
+Selected
+Correct
+This is correct. Stopping an instance is a temporary action that allows you to start it again later, while terminating permanently deletes the instance.
+Stopping requires permission, terminating doesn't
+Not selected
+Incorrect
+This is incorrect. Both stopping and terminating instances typically require appropriate permissions.
+Stopping retains data, terminating erases all data
+Not selected
+Incorrect
+This is partially correct but not the primary difference. Both stopping and terminating can retain data depending on the storage type, but termination is a permanent action.
+Stopping charges for storage, terminating doesn't
+Not selected
+Incorrect
+This is incorrect. While it's true that stopped instances may incur storage charges, this is not the primary difference between stopping and terminating.
+Question 5
+Answer status:
+Correct
+Question
+What precaution can you take to prevent accidental termination of an EC2 instance?
+Question Type
+Multiple Choice
+Answer Options
+Option
+Your Selection
+Correct Answer
+Rationale
+Enable automatic backups
+Not selected
+Incorrect
+This is incorrect. While backups are important, they do not prevent accidental termination of an instance.
+Enable termination protection
+Selected
+Correct
+This is correct. Enabling termination protection (setting the 'disableApiTermination' attribute) prevents accidental termination of an EC2 instance.
+Assign an Elastic IP address
+Not selected
+Incorrect
+This is incorrect. An Elastic IP address is used for static public IP addressing and does not protect against termination.
+Use a larger instance type
+Not selected
+Incorrect
+This is incorrect. The instance type does not affect its susceptibility to accidental termination.
